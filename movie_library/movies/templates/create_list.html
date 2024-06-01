@@ -1,0 +1,24 @@
+<!-- templates/create_list.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Create List</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+</head>
+<body>
+    <h1>Create New List</h1>
+    <form method="post">
+        {% csrf_token %}
+        <div>
+            <label for="name">List Name:</label>
+            <input type="text" name="name" id="name" required>
+        </div>
+        <div>
+            <label for="is_public">Public:</label>
+            <input type="checkbox" name="is_public" id="is_public">
+        </div>
+        <button type="submit">Create</button>
+    </form>
+</body>
+</html>

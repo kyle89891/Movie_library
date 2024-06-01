@@ -1,0 +1,18 @@
+<!-- templates/list_detail.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <title>{{ movie_list.name }}</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+</head>
+<body>
+    <h1>{{ movie_list.name }}</h1>
+    <ul>
+        {% for item in movie_list.items.all %}
+            <li>{{ item.movie.title }} ({{ item.movie.year }})</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

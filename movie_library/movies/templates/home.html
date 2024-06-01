@@ -1,0 +1,45 @@
+<!-- templates/home.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Movie Library</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Movie Library</h1>
+        <form method="get">
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary">Search</button>
+        </form>
+        <div class="row">
+            {% for movie in movies %}
+                <div class="col-md-4">
+                    <div class="card">
+                        <img src="{{ movie.Poster }}" class="card-img-top" alt="{{ movie.Title }}">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ movie.Title }}</h5>
+                            <p class="card-text">{{ movie.Year }}</p>
+                            <button class="btn btn-success" onclick="addToList('{{ movie.imdbID }}', '{{ movie.Title }}', '{{ movie.Year }}')">Add to List</button>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    <script>
+        function addToList(imdbID, title, year) {
+            fetch('/api/movie_lists/{list_id}/add_movie/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': '{{ csrf_token }}'
+                },
+                body: JSON.stringify({movie_id: imdbID, title: title, year: year})
+            }).then(response => response.json()).then(data => {
+                console.log(data);
+            });
+        }
+    </script>
+</body>
+</html>

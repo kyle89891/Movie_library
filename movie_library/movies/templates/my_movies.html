@@ -1,0 +1,32 @@
+<!-- templates/my_movies.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Movie List</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        /* Add custom styles here */
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>My Movie List</h1>
+        <div class="row">
+            {% for item in movie_list %}
+                <div class="col-md-3">
+                    <div class="card mb-3">
+                        <img src="{{ item.movie.Poster }}" class="card-img-top" alt="{{ item.movie.Title }}">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ item.movie.Title }}</h5>
+                            <p class="card-text">Year: {{ item.movie.Year }}</p>
+                            <!-- Add more details as needed -->
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>
